@@ -21,5 +21,22 @@ const UserController = {
             console.log(err);
             res.status(500).json(err);
         });
-    }
+    },
+    // get a user by its id
+    getUserById ({params}, res){
+        User.findOne({_id: params.id})
+        .populate({path: 'Thoughts', select: '__v'})
+        .populate({path: 'friends', select: '__v'})
+        .select('-__v')
+        .then(dbUserData => {
+            if (!dbUserData){
+                res.status(404).json({message: 'no user with this id'});
+                return;
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    },
 }
