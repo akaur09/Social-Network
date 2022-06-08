@@ -4,22 +4,30 @@ const {Schema , Model , Types} = require('mongoose');
 const thoughtsSchema = new Schema(
     {
      // for thought text 
-     thoughtsText: {
-        // take it in as a string
-        type: String,
-        // make it required
-        required: true,
-        // limit the charaters to be w/in 1-280
-        maxlength: 280
-     }
-
+        thoughtsText: {
+            // take it in as a string
+            type: String,
+            // make it required
+            required: true,
+            // limit the charaters to be w/in 1-280
+            maxlength: 280
+        },
      // have a created at 
-        // have the date
-        // set it to default to current timestamp
-        // use a get method to format the timestamp
+        createdAt: {
+            // have the date
+            type: Date,
+            // set it to default to current timestamp
+            default: Date.now
+            // use a get method to format the timestamp
+        },
      // username
-        // take it in as a string
-        // require it
+        username: {
+            // take it in as a string
+            type: String,
+            // require it
+            required: true
+        }
+
     }
 )
 
