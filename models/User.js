@@ -19,9 +19,13 @@ const userSchema = new Schema(
      // for email:
         email: {
             // take in in as a string
+            type: String,
             // require it
+            required: true,
             // set it to be unique
+            unique: true,
             // use mongoose to validate the email to be an email address
+            match:  ['Please use a valid email', /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
         },
     // for thoughts:
         Thoughts: {
