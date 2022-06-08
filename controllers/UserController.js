@@ -55,4 +55,18 @@ const UserController = {
             res.status(400).json(err);
         });
     },
+    deleteUser ({params}, res){
+        User.findOneAndDelete({_id:params.id})
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({message: 'no users with this id'});
+                return;
+            }
+            res.json(dbUserData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    }
 }
