@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 // create a port to listen to
 const PORT = process.env.PORT || 3000;
+const app = express();
 // use express
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

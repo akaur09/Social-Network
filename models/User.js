@@ -1,7 +1,6 @@
 // create model for users
 // require mongo to create schema
-const {Schema, Model} = require('mongoose');
-const { User } = require('.');
+const {Schema, model} = require('mongoose');
 // create the schema model function called User
 const userSchema = new Schema(
     {
@@ -48,7 +47,7 @@ const userSchema = new Schema(
     }
 );
 
-const User = Model('User', userSchema);
+const User = model('User', userSchema);
 userSchema.virtual('friendCount').get(function(){
     return this.friends.length;
 });

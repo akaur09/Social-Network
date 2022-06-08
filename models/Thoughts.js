@@ -72,4 +72,4 @@ const reactionSchema = new Schema (
         }
     }
 )
-module.exports = {Thoughts};
+module.exports = {Thoughts}
