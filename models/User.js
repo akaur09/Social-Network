@@ -33,9 +33,11 @@ const userSchema = new Schema(
             ref: 'Thoughts'
         }],
     // for friends
-        friends: {
+        friends: [{
             // have an array of id referencing to the User model
-        }
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }]
         
     }
 )
