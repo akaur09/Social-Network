@@ -38,5 +38,20 @@ const thoughtsSchema = new Schema(
     }
 )
 
+const reactionSchema = new Schema (
+    {
+        // reaction id
+        reactionId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId()
+        },
+        // code reaction body
+        reactionBody: {
+            type: String,
+            required: true,
+            maxlength: 280
+        }
+    }
+)
     // reactions
         // take in an array that is created with the reaction schema
