@@ -37,7 +37,8 @@ const thoughtsSchema = new Schema(
         id: false
     }
 )
-
+// reactions
+        // take in an array that is created with the reaction schema
 const reactionSchema = new Schema (
     {
         // reaction id
@@ -50,8 +51,19 @@ const reactionSchema = new Schema (
             type: String,
             required: true,
             maxlength: 280
+        },
+        username: {
+            type: String,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
+    },
+    {
+        toJSON: {
+            getters: true
         }
     }
 )
-    // reactions
-        // take in an array that is created with the reaction schema
