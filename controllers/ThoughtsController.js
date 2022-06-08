@@ -73,7 +73,7 @@ const ThoughtsController = {
     },
     // add a reaction
     addReaction({params, body},res){
-        Thoughts.findOneAndUpdate ({_id: params.thoughtsId}, {$push: {reactions: body}}, {new: true, runValidators:true})
+        Thoughts.findOneAndUpdate ({_id: params.ThoughtsId}, {$push: {reaction: body}}, {new: true, runValidators:true})
         .populate({path: 'reaction', select: '-__v'})
         .select ('-__v')
         .then(dbThoughtsData => {
@@ -84,7 +84,18 @@ const ThoughtsController = {
             res.json(dbThoughtsData)
         })
         .catch(err => res.status(400).json(err));
-    }
+    },
     // delete a reaction
-}
+    deleteReaction ({params},res){
+        Thoughts.findOneAndUpdate ({_id: params.ThoughtsId}, {$push: {reaction: body}}, {new: true, runValidators:true})
+        .then(dbThoughtsData => {
+            if (!dbThoughtsData){
+                res.status(404).json({message: 'no thought with this id'})
+                return;
+            }
+            res.json(dbThoughtsData)
+        })
+        .catch(err => res.status(400).json(err));
+    }
+};
 module.exports = ThoughtsController;
