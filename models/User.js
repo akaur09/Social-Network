@@ -8,10 +8,13 @@ const userSchema = new Schema(
         // for username make sure to have:
         username:{
             // take it in as a string
-
+            type: String,
             // set it to be unique
+            unique: true,
             // require it
+            required: true,
             // trim white space  
+            trim: true
         },
      // for email:
         email: {
