@@ -37,8 +37,14 @@ const userSchema = new Schema(
             // have an array of id referencing to the User model
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }]
-        
+        }]  
+    },
+    {
+        toJSON: {
+            virtuals: true,
+            getters: true
+        },
+        id: false
     }
 )
 module.exports = User;     
