@@ -37,6 +37,11 @@ const thoughtsSchema = new Schema(
         id: false
     }
 )
+// function for reaction count
+thoughtsSchema.virtual('reactionCount').get(function(){
+    return this.reactions.length
+});
+const Thoughts = Model('Thoughts', thoughtsSchema);
 // reactions
         // take in an array that is created with the reaction schema
 const reactionSchema = new Schema (
@@ -67,3 +72,4 @@ const reactionSchema = new Schema (
         }
     }
 )
+module.exports = {Thoughts};
