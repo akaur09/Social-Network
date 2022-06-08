@@ -16,8 +16,18 @@ const ThoughtsController = {
             res.json(dbThoughtsData)
         })
         .catch (err => res.json(err));
-    }
+    },
     // get all thougths
+    getAllThoughts (req, res){
+        Thoughts.find({})
+        .populate({path: 'reaction', select: '-__v'})
+        .select ('-__v')
+        .then(dbThoughtsData => res.json(dbThoughtsData))
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err);
+        });
+    }
     // get only one thought
     // edit thought
     // delete thought
