@@ -1,10 +1,10 @@
-var User = [
+var user = [
     {
         username: "Loki",
         email: "loki@gmail.com"
     }
 ]
-var Thoughts = [
+var thoughts = [
     {
         thoughtText: "I want ice cream",
         username: "loki"
