@@ -27,8 +27,24 @@ const ThoughtsController = {
             console.log(err)
             res.status(500).json(err);
         });
-    }
+    },
     // get only one thought
+    getThoughtsById (req,res) {
+        Thoughts.findOne({_id: params.id})
+        .populate({path: 'reaction', select: '-__v'})
+        .select ('-__v')
+        .then(dbThoughtsData => {
+            if (!dbThoughtsData){
+                res.status(404).json({message: 'no thought with this id'})
+                return;
+            }
+            res.json(dbThoughtsData)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err);
+        });
+    }
     // edit thought
     // delete thought
     // add a reaction
