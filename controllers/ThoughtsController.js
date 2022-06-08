@@ -60,9 +60,31 @@ const ThoughtsController = {
         .catch(err => res.json(err));
     },
     // delete thought
-
+    deleteThoughts ({params}, res){
+        Thoughts.findOneAndDelete({_id: params.id})
+        .then(dbThoughtsData => {
+            if (!dbThoughtsData){
+                res.status(404).json({message: 'no thought with this id'})
+                return;
+            }
+            res.json(dbThoughtsData)
+        })
+        .catch(err => res.json(err));
+    },
     // add a reaction
-
+    addReaction({params, body},res){
+        Thoughts.findOneAndUpdate ({_id: params.thoughtsId}, {$push: {reactions: body}}, {new: true, runValidators:true})
+        .populate({path: 'reaction', select: '-__v'})
+        .select ('-__v')
+        .then(dbThoughtsData => {
+            if (!dbThoughtsData){
+                res.status(404).json({message: 'no thought with this id'})
+                return;
+            }
+            res.json(dbThoughtsData)
+        })
+        .catch(err => res.status(400).json(err));
+    }
     // delete a reaction
 }
 module.exports = ThoughtsController;
